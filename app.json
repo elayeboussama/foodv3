@@ -1,0 +1,39 @@
+{
+    "expo": {
+        "name": "food",
+        "slug": "food",
+        "version": "1.0.0",
+        "orientation": "landscape",
+        "icon": "./assets/favicon.png",
+        "userInterfaceStyle": "light",
+        "splash": {
+            "image": "./assets/adaptive-icon.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "updates": {
+            "fallbackToCacheTimeout": 0
+        },
+        "assetBundlePatterns": [
+            "**/*"
+        ],
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/adaptive-icon.png",
+                "backgroundColor": "#FFFFFF"
+            },
+            "package": "com"
+        },
+        "web": {
+            "favicon": "./assets/favicon.png"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "22b3374e-c089-4bc1-bd1f-fd18781a461f"
+            }
+        }
+    }
+}
