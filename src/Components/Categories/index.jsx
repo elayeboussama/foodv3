@@ -3,7 +3,7 @@ import { Text, View, Image, StyleSheet, SafeAreaView, Dimensions} from "react-na
 import {styles} from './styles'
 // import { Button } from 'react-native-elements';
 // import Icon from 'react-native-vector-icons/FontAwesome';
-import { MaterialIcons, MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
+//import { MaterialIcons, MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
 import { FlatList, ScrollView,TextInput,TouchableHighlight,TouchableOpacity } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../consts/colors';
@@ -13,49 +13,48 @@ const {width} = Dimensions.get('screen');
 const cardWidth = width/2 -20;
 
 
-const Categories = () => {
-  const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
-  const ListCategories = () => {
-    return (
-      <ScrollView 
-      horizontal
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.categoriesListContainer}>
-        {categories.map((category,index) => (
-          <TouchableOpacity key = {index} activeOpacity={0.8} onPress={() => setSelectedCategoryIndex(index)}>
-            <View style={{
-              backgroundColor:selectedCategoryIndex == index
-              ? COLORS.primary 
-              : COLORS.secondary,
-              ...style.categoryBtn
-            }}>
-              <View style={styles.categoryBtnImgCon}>
-                <Image source={category.image}
-                style ={styles.ImgCat}
-                 />
-              </View>
-              <Text style= {{
-                  fontSize :17,
-                  fontWeight:'bold',
-                  marginLeft: 10,
-                  color : 
-                  selectedCategoryIndex == index
-                  ? COLORS.white
-                  : COLORS.primary,
-              }}>
-                 {category.name}
-              </Text>
-            </View>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-    )
-  };
+ const ListCategories = () => {
+   const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
+   return (
+     <ScrollView 
+     horizontal
+     showsVerticalScrollIndicator={false}
+     contentContainerStyle={styles.categoriesListContainer}>
+       {categories.map((category,index) => (
+         <TouchableOpacity key = {index} activeOpacity={0.8} onPress={() => setSelectedCategoryIndex(index)}>
+           <View style={{
+             backgroundColor:selectedCategoryIndex == index
+             ? COLORS.primary 
+             : COLORS.secondary,
+             ...style.categoryBtn
+           }}>
+             <View style={styles.categoryBtnImgCon}>
+               <Image source={category.image}
+               style ={styles.ImgCat}
+                />
+             </View>
+             <Text style= {{
+                 fontSize :17,
+                 fontWeight:'bold',
+                 marginLeft: 10,
+                 color : 
+                 selectedCategoryIndex == index
+                 ? COLORS.white
+                 : COLORS.primary,
+             }}>
+                {category.name}
+             </Text>
+           </View>
+         </TouchableOpacity>
+       ))}
+     </ScrollView>
+   )
+ };
 
-  const Card = ({food}) => {
-    return (
-      <TouchableOpacity>
-      <View style ={style.card}>
+
+ const Card = ({food}) => {
+   return (
+     <View style ={style.card}>
       <View>
         <Image source={food.image} style={{height:120, width:120, marginLeft:15,}}     />
       </View> 
@@ -65,27 +64,32 @@ const Categories = () => {
       <View style={{marginTop:10,marginHorizontal:20,flexDirection:"row",justifyContent:"space-between"}}>
         <Text style={{fontSize:14, fontWeight: 'bold',}}> {food.price} TND</Text>
         <View style={styles.addToCartBTn}>
-        <Icon name="add" size={20} color={COLORS.white}/>
+          <Icon name="add" size={20} color={COLORS.white}/>
         </View>
       </View>
-      </View>
-      </TouchableOpacity>
-    );
-  };
+     </View>
+   );
+ };
+
+const Categories = () => {
+  
   return (
     <View style={styles.Categories}> 
     
-    <View style={styles.cat}>
-        <ListCategories/>
-    </View>
-     
-    <View style={styles.souscat}>
-    <FlatList
-    showsVerticalScrollIndicator={false}
-    numColumns={2}
-    data={foods}
-    renderItem={({item}) => <Card food ={item} /> }/>
-    </View>   
+      <View style={styles.cat}>
+        <ListCategories/> 
+      </View>
+      
+      <View style={styles.souscat}>
+        <FlatList
+        contentContainerStyle = {
+          {width:"80%", height:"auto", alignSelf:"center" } }
+        style={styles.souscatList}
+        showsVerticalScrollIndicator={false}
+        numColumns={4}
+        data={foods}
+        renderItem={({item}) => <Card food ={item} /> }/> 
+      </View>  
 
     </View>
 
@@ -106,13 +110,12 @@ categoryBtn: {
 card: {
   height: 200,
   width: 150,
-  marginHorizontal:5,
-  marginBottom: 5,
-  marginTop: 100,
+  marginHorizontal:15,
+  marginVertical: 15, 
   borderRadius: 15,
   backgroundColor: COLORS.secondary,
   //marginLeft:10,
-  marginRight:150,
+
   
 },
 });

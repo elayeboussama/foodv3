@@ -7,9 +7,9 @@ const styles = StyleSheet.create({
         display: "flex",
         width: "70%",
         height: "86.3%",
-        justifyContent: "space-between",   //justifyContent: "space-around",
-        alignItems: "right",
-        flexDirection: "row",
+        justifyContent: "space-between", //justifyContent: "space-around",
+        // alignItems: "right",
+        flexDirection: "column",
         backgroundColor: '#fff',
         margin: 8,
         borderRadius: 13,
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
 
-    categoriesListContainer:{
+    categoriesListContainer: {
         paddingVertical: 20,
         paddingHorizontal: 20,
     },
@@ -40,20 +40,33 @@ const styles = StyleSheet.create({
 
     },
 
-    ImgCat : {
-        height:35,
-        width:35,
-        resizeMode:'cover',
+    ImgCat: {
+        height: 35,
+        width: 35,
+        resizeMode: 'cover',
     },
 
-     souscat:{
-         marginLeft:-500,        
-     },
+    souscat: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        paddingBottom: 100,
+        // backgroundColor: "red",
+    },
+    souscatList: {
+        width: "50%",
+        height: "100%",
+        // backgroundColor: "#000",
+
+
+    },
     // cat:{
     //     marginLeft:220,
     //     justifyContent:"space-between"
     // }
-    addToCartBTn:{
+    addToCartBTn: {
         height: 30,
         width: 30,
         borderRadius: 20,

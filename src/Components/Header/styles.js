@@ -15,21 +15,21 @@ const styles = StyleSheet.create({
 
 
     inputContainer: {
-        flex: 1,
+        width: 300,
         height: 50,
         borderRadius: 10,
         flexDirection: 'row',
         backgroundColor: COLORS.light,
         alignItems: 'center',
         paddingHorizontal: 20,
-      },
-
-
-    input:{
-        justifyContent:"space-between"
     },
 
-    
+
+    input: {
+        justifyContent: "space-between"
+    },
+
+
     text: {
         fontSize: 15,
     },
