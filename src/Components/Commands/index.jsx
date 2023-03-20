@@ -31,11 +31,12 @@ const Commands = () => {
       <View style={styles.services}>
         
         <TouchableOpacity style={styles.service}>
-        <MaterialIcons
+        {/* <MaterialIcons
               name="delivery-dining"
               size={40}
               color="#008000"
-            />
+            /> */}
+            <Image  style={{  width: 50, height: 50, }} source={require('../../assets/services/livraison.png')} />
           <Text style={styles.text}>Livraison</Text>
         </TouchableOpacity>
 

@@ -1,27 +1,44 @@
-import React from "react";
-import { Text, View, Image, StyleSheet, SafeAreaView, Dimensions} from "react-native";
+import React, { useEffect } from "react";
+import { Text, View, Image, StyleSheet, SafeAreaView, Dimensions,TouchableOpacity} from "react-native";
 import {styles} from './styles'
 // import { Button } from 'react-native-elements';
 // import Icon from 'react-native-vector-icons/FontAwesome';
 //import { MaterialIcons, MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
-import { FlatList, ScrollView,TextInput,TouchableHighlight,TouchableOpacity } from "react-native-gesture-handler";
+import { FlatList, ScrollView,TextInput,TouchableHighlight } from "react-native-gesture-handler";
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../consts/colors';
 import categories from '../../consts/categories';
 import foods from '../../consts/foods';
+import Burgers from '../../consts/burgers';
+import Sandwichs from '../../consts/sandwichs';
 const {width} = Dimensions.get('screen');
 const cardWidth = width/2 -20;
 
 
- const ListCategories = () => {
+ const ListCategories = ({setData}) => {
    const [selectedCategoryIndex, setSelectedCategoryIndex] = React.useState(0);
+
+   const HandleChange=(categoryName,index)=>{
+    setSelectedCategoryIndex(index) 
+    console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+    console.log(categoryName)
+    console.log("vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv")
+    switch(categoryName){
+      case "Pizza": setData(foods);break;
+      case "Burger": setData(Burgers);break;
+      case "Sandwich": setData(Sandwichs);break;
+      default:
+        setData(foods);break;
+    }
+   }
+
    return (
      <ScrollView 
      horizontal
      showsVerticalScrollIndicator={false}
      contentContainerStyle={styles.categoriesListContainer}>
        {categories.map((category,index) => (
-         <TouchableOpacity key = {index} activeOpacity={0.8} onPress={() => setSelectedCategoryIndex(index)}>
+         <TouchableOpacity key = {index} activeOpacity={0.8} onPress={() => HandleChange(category.name,index)}>
            <View style={{
              backgroundColor:selectedCategoryIndex == index
              ? COLORS.primary 
@@ -72,12 +89,17 @@ const cardWidth = width/2 -20;
  };
 
 const Categories = () => {
+
+  const [data, setData]=React.useState(foods);
+  // useEffect(()=>{
+  //   console.log(data);
+  // },[data])
   
   return (
     <View style={styles.Categories}> 
     
       <View style={styles.cat}>
-        <ListCategories/> 
+        <ListCategories setData={setData} /> 
       </View>
       
       <View style={styles.souscat}>
@@ -87,7 +109,7 @@ const Categories = () => {
         style={styles.souscatList}
         showsVerticalScrollIndicator={false}
         numColumns={4}
-        data={foods}
+        data={data?data:data}
         renderItem={({item}) => <Card food ={item} /> }/> 
       </View>  
 
