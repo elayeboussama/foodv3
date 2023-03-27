@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import COLORS from '../../consts/colors';
 import categories from '../../consts/categories';
 import foods from '../../consts/foods';
+import ticket from '../../consts/ticket';
 import fonctions from '../../consts/fonctions';
 import Burgers from '../../consts/burgers';
 import Sandwichs from '../../consts/sandwichs';
@@ -195,26 +196,32 @@ const cardWidth = width/2 -20;
 };
 
 
- const Card = ({food}) => {
+ const Card = ({food, update, setUpdate}) => {
+  const HandleAddProd2Ticket = () =>{
+    ticket.push(food)
+    setUpdate(!update)
+  }
    return (
-     <View style ={style.card}>
-      <View>
-        <Image source={food.image} style={{height:120, width:120, marginLeft:15,}}     />
-      </View> 
-      <View style={{marginHorizontal:5}}>
-        <Text style={{fontSize:16, fontWeight: 'bold'}}> {food.name}</Text> 
-      </View>
-      <View style={{marginTop:10,marginHorizontal:20,flexDirection:"row",justifyContent:"space-between"}}>
-        <Text style={{fontSize:14, fontWeight: 'bold',}}> {food.price} TND</Text>
-        <View style={styles.addToCartBTn}>
-          <Icon name="add" size={20} color={COLORS.white}/>
+     <View  style ={style.card}>
+ 
+        <View>
+          <Image source={food.image} style={{height:120, width:120, marginLeft:15,}}     />
+        </View> 
+        <View style={{marginHorizontal:5}}>
+          <Text style={{fontSize:16, fontWeight: 'bold'}}> {food.name}</Text> 
         </View>
-      </View>
+        <View style={{marginTop:10,marginHorizontal:20,flexDirection:"row",justifyContent:"space-between"}}>
+          <Text style={{fontSize:14, fontWeight: 'bold',}}> {food.price} TND</Text>
+          <TouchableOpacity onPress={HandleAddProd2Ticket} style={styles.addToCartBTn}>
+            <Icon name="add" size={20} color={COLORS.white}/>
+          </TouchableOpacity>
+        </View>
+ 
      </View>
    );
  };
 
-const Categories = () => {
+const Categories = ({setUpdate, update}) => {
   const [modalState ,setModalState] = React.useState(0)
   const [category, setCategory]=React.useState("Pizza");
   const [open, setOpen]=React.useState(false);
@@ -304,7 +311,7 @@ const Categories = () => {
         showsVerticalScrollIndicator={false}
         numColumns={4}
         data={data?data:data}
-        renderItem={({item}) => <Card food ={item} /> }/> 
+        renderItem={({item}) => <Card setUpdate={setUpdate} update={update} food ={item} /> }/> 
       </View>  
 
       {stateModalIndex==1 ?

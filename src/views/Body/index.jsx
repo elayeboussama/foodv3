@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 import Header from "../../Components/Header";
 import Categories from "../../Components/Categories";
@@ -10,13 +10,13 @@ import {styles} from './styles'
 // import { TouchableOpacity } from "react-native-gesture-handler";
 const Body = () => {
 
-
+  const [update, setUpdate] = useState(false)
   return (
     <View style={styles.body}>
         <Header/>   
         <View style={styles.BodySection}>
-            <Categories/>
-            <Commands/>
+            <Categories update={update} setUpdate={setUpdate}/>
+            <Commands update={update}/>
         </View>
     </View>
   );
